@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: greatsuccess
+  namespace: com-att-ocnp-mgmt
+spec:
+  replicas: 1
+  selector:
+    app: greatsuccess
+  template:
+    metadata:
+      labels:
+        app: greatsuccess
+    spec:
+      serviceAccount: YOUR
+      containers:
+      - name: greatsuccess
+        image: ${docker-registry}/${docker-namespace}/greatsuccess:latest
+        imagePullPolicy: Always
+        ports:
+         - containerPort: 8080
